@@ -81,7 +81,7 @@ public class Main {
                     System.out.println("Introduzca el NIF del trabajador a modificar");
                     dni = sc.nextLine();
                     if (trabajadores.containsKey(dni)) {
-                        Main.borrar(dni, trabajadores);
+                        trabajadores.remove(dni);
                         System.out.println("introduzca los nuevos datos");
                         System.out.println();
                         System.out.println("Introduzca el dni  de un trabajador");
@@ -104,7 +104,7 @@ public class Main {
                     System.out.println();
                     System.out.println("Introduzca el NIF del trabajador a borrar");
                     dni = sc.nextLine();
-                    Main.borrar(dni, trabajadores);
+                    trabajadores.remove(dni);
                 }
 
 
@@ -116,9 +116,5 @@ public class Main {
 
     }
 
-    public static void borrar(String dni, HashMap trabajadores) {
 
-        trabajadores.remove(dni);
-
-    }
 }
