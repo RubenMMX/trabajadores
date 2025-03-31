@@ -21,9 +21,11 @@ public class Main {
             System.out.println("3- Busca un trabajador por nombre ");
             System.out.println("4- Modifica un trabajador");
             System.out.println("5- Borrar un trabajador");
+            System.out.println("6- Mostrar los trabajadores");
+            System.out.println("7- Salir");
             opcion = sc.nextInt();
             sc.nextLine();
-            Trabajadores trabajador = new Trabajadores();
+
             switch (opcion) {
 
                 case 1 -> {
@@ -31,16 +33,19 @@ public class Main {
                     System.out.println();
                     System.out.println("Introduzca el dni  de un trabajador");
                     dni = sc.nextLine();
-                    trabajador.setDni(dni);
+
                     System.out.println("Introduzca su nombre ");
                     nombre = sc.nextLine();
-                    trabajador.setNombre(nombre);
+
                     System.out.println("introduzca sus apellidos");
                     apellidos = sc.nextLine();
-                    trabajador.setApellidos(apellidos);
+
+
 
                     if (!trabajadores.containsKey(dni)) {
+                        Trabajadores trabajador = new Trabajadores(nombre,apellidos,dni);
                         trabajadores.put(dni, trabajador);
+
                     } else {
                         System.out.println("Este trabajador ya existe");
                     }
@@ -52,8 +57,9 @@ public class Main {
                     System.out.println("Introduzca NIF del trabajador a buscar");
                     dni = sc.nextLine();
                     if (trabajadores.containsKey(dni)) {
-                        trabajador = trabajadores.get(dni);
-                        System.out.println("Nombre del trabajador: " + trabajador.getNombre());
+
+
+                        System.out.println("Nombre del trabajador: " + trabajadores.get(dni).getNombre());
                     } else {
                         System.out.println("No se encontró al trabajador con NIF: " + dni);
                     }
@@ -65,14 +71,17 @@ public class Main {
                     System.out.println();
                     System.out.println("Introduzca el nombre del trabajador a buscar");
                     nombre = sc.nextLine();
+                    boolean encontrado = false;
 
-                    Iterator<Trabajadores> it = trabajadores.values().iterator();
-                    trabajador = trabajadores.get(trabajador.getNombre());
-                    if (trabajadores.containsValue(trabajador)) {
-
-                    } else {
-                        System.out.println("El trabajador no existe");
-                    }
+                  for(Trabajadores trabajador :trabajadores.values()){
+                      if (trabajador.getNombre().equals(nombre)) {
+                          System.out.println("NIF del trabajador: " + trabajador.getDni());
+                          encontrado = true;
+                      }
+                  }
+                  if (!encontrado) {
+                      System.out.println("No existe un trabajador con ese nombre");
+                  }
 
 
                 }
@@ -86,14 +95,11 @@ public class Main {
                         System.out.println();
                         System.out.println("Introduzca el dni  de un trabajador");
                         dni = sc.nextLine();
-                        trabajador.setDni(dni);
                         System.out.println("Introduzca su nombre ");
                         nombre = sc.nextLine();
-                        trabajador.setNombre(nombre);
                         System.out.println("introduzca sus apellidos");
                         apellidos = sc.nextLine();
-                        trabajador.setApellidos(apellidos);
-
+                        Trabajadores trabajador = new Trabajadores(nombre,apellidos,dni);
 
                     } else {
                         System.out.println("Este trabajador no existe");
@@ -106,13 +112,20 @@ public class Main {
                     dni = sc.nextLine();
                     trabajadores.remove(dni);
                 }
+                case 6 ->{
+                    System.out.println(trabajadores);
+                }
+                case 7 ->{
+                    System.out.println("Has elegido salir");
+
+                }
 
 
             }
 
 
             System.out.println();
-        } while (opcion >= 1 && opcion <= 5);
+        } while (opcion !=6);
 
     }
 
