@@ -3,8 +3,10 @@ public class Trabajadores {
     private String apellidos;
     private String dni;
 
-    public Trabajadores() {
-
+    public Trabajadores(String nombre, String apellidos, String dni) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.dni = dni;
     }
 
     public String getNombre() {
@@ -29,5 +31,14 @@ public class Trabajadores {
 
     public void setDni(String dni) {
         this.dni = dni;
+    }
+
+    @Override
+    public String toString() {
+        return "Trabajadores{" +
+                "nombre='" + nombre + '\'' +
+                ", apellidos='" + apellidos + '\'' +
+                ", dni='" + dni + '\'' +
+                '}';
     }
 }
